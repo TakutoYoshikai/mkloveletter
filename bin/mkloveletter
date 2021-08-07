@@ -1,0 +1,19 @@
+#!/bin/bash
+
+d=`pwd`
+cp $1 `dirname $0`/../love-letter
+cp $2 `dirname $0`/../love-letter
+cd `dirname $0`/../love-letter
+key=`cat /dev/urandom | base64 | fold -w 32 | head -n 1`
+cargo run `basename $1` $key > src/2.txt
+cargo run `basename $2` $key > src/4.txt
+rm `basename $1`
+rm `basename $2`
+echo -n $key > src/6.txt
+echo -n $3 > src/8.txt
+cat src/1.txt src/2.txt src/3.txt src/4.txt src/5.txt src/6.txt src/7.txt src/8.txt src/9.txt > src/main.rs
+cargo build --release
+git checkout src/main.rs
+cp target/release/love-letter $d/`basename $2`.loveletter
+#rm src/2.txt src/4.txt src/6.txt src/8.txt
+
