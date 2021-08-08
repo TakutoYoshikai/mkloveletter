@@ -15,5 +15,5 @@ cat src/1.txt src/2.txt src/3.txt src/4.txt src/5.txt src/6.txt src/7.txt src/8.
 cargo build --release
 git checkout src/main.rs
 cp target/release/love-letter $d/`basename $2`.loveletter
-#rm src/2.txt src/4.txt src/6.txt src/8.txt
+rm src/2.txt src/4.txt src/6.txt src/8.txt
 
